@@ -3,12 +3,12 @@ import axios from 'axios';
 const url = 'http://localhost:3000/phones';
 
 export async function getPhones() {
-  return await axios.get(url).then(res => res.data).catch(err=> console.log(err));
+  return await axios.get(url);
 }
 
-// export function getPhone(id) {
-//     return phones.find(m => m.id === id);
-// }
+export async function getPhone(id) {
+  return await axios.get(url + '/' + id);
+}
 
 // export function savePhone(phone) {
 //     let phoneInDb = phones.find(m => m._id === phone.id) || {};
