@@ -5,20 +5,35 @@ import Card from "./Card";
 
 function Catalog() {
   const [phones, setPhones] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    setPhones(getPhones());
-  },[phones])
+    async function fetchData() {
+      setIsLoading(true);
+      const response = await getPhones();
+      response ? setPhones(response.data) : setMessage('Ha ocurrido un error');
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
 
   return (
-    <main className="container">
-      <h1 className="mb-4 h1 mb-4 text-center">Phone Catalog</h1>
-      <ul className="catalog-list p-0">
-        {phones.map((phone) => (
-          <Card key={phone.id} phone={phone} />
-        ))}
-      </ul>
-    </main>
+    <>
+      {isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        <main className="container">
+          <h1 className="mb-4 h1 mb-4 text-center">Phone Catalog</h1>
+          {message && <p>{message}</p>}
+          <ul className="catalog-list p-0">
+            {phones.map((phone) => (
+              <Card key={phone.id} phone={phone} />
+            ))}
+          </ul>
+        </main>
+      )}
+    </>
   );
 }
 

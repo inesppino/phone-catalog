@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const phones = [
     {
       id: 0,
@@ -61,8 +63,10 @@ const phones = [
     },
 ];
 
-export function getPhones() {
-    return phones;
+const url = 'http://localhost:3002/phones';
+
+export async function getPhones() {
+  return await axios.get(url).then(res => res.data).catch(err=> console.log(err));
 }
 
 export function getPhone(id) {
