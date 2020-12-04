@@ -1,5 +1,5 @@
 import React from "react";
-import '../assets/css/catalog.css'
+import "../assets/css/catalog.css";
 
 function Catalog() {
   const phones = [
@@ -95,6 +95,9 @@ function Catalog() {
                       Edit
                     </button>
                   </div>
+                  <button type="button" className="btn btn-sm btn-danger">
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
