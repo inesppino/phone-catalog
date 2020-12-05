@@ -12,7 +12,7 @@ const DetailCard = (props) => {
       setDetails(response.data);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        this.props.history.replace("/not-found");
+        props.history.replace("/not-found");
     }
   };
 
