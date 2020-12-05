@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPhones } from "../services/fakePhoneService";
+import { getPhones, deletePhone } from "../services/fakePhoneService";
 import LoadingMask from "react-loadingmask";
 import Card from "./Card";
 import "../assets/css/catalog.css";
@@ -21,6 +21,20 @@ function Catalog() {
     }
     setIsLoading(false);
   };
+
+  const handleDelete = async (phone) => {
+    const originalPhones = phones;
+    const newPhones = originalPhones.filter(p => p.id !== phone.id);
+    setPhones(newPhones);
+    try {
+      const result = await deletePhone(phone.id);
+      console.log(result);
+    } catch (ex) {
+      if(ex.response && ex.response.status === 404)
+      alert.error('This movie has already been deleted');
+      setPhones(originalPhones);
+    }
+  }
   
   useEffect(() => {
     async function populateComponent() {
@@ -35,10 +49,11 @@ function Catalog() {
         <div className="container d-flex flex-column">
           <h1 className="h1 p-4 text-center">Phone Catalog</h1>
           {message && <p>{message}</p>}
+          <p>Showing {phones.length} movies in the database.</p>
           <ul className="catalog-list p-0">
             {phones.map((phone) => (
               <li key={phone.id}>
-                <Card phone={phone} />
+                <Card phone={phone} onDelete={handleDelete}/>
               </li>
             ))}
           </ul>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ phone }) => {
+const Card = ({ phone, onDelete }) => {
   return (
     <div className="card shadow-sm">
       <div className="card-body">
@@ -21,7 +21,7 @@ const Card = ({ phone }) => {
             <Link to={`/catalog/edit/${phone.id}`}>Edit</Link>
             </button>
           </div>
-          <button type="button" className="btn btn-sm btn-danger">
+          <button onClick={() => onDelete(phone)} type="button" className="btn btn-sm btn-danger">
             Delete
           </button>
         </div>

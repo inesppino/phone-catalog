@@ -4,10 +4,14 @@ const url = 'http://localhost:3000/phones';
 
 export async function getPhones() {
   return await axios.get(url);
-}
+};
 
 export async function getPhone(id) {
   return await axios.get(url + '/' + id);
+};
+
+export async function deletePhone(id) {
+  return await axios.delete(url + '/' + id);
 }
 
 // export function savePhone(phone) {
@@ -30,8 +34,3 @@ export async function getPhone(id) {
 //     return phoneInDb;
 // }
   
-// export function deletePhone(id) {
-//     let phoneInDb = phones.find(m => m._id === id);
-//     phones.splice(phones.indexOf(phoneInDb), 1);
-//     return phoneInDb;
-// }
