@@ -45,9 +45,9 @@ function Catalog() {
     <main>
       <LoadingMask loading={isLoading} text={"loading..."} className="h-100 w-100">
         <div className="container d-flex flex-column">
-          <h1 className="h1 p-4 text-center">Phone Catalog</h1>
+          <h1 className="h1 mb-4 text-center">Phone Catalog</h1>
           {message && <p>{message}</p>}
-          <p>Showing {phones.length} phones in the database.</p>
+          <p className="m-5">Showing {phones.length} phones in the database.</p>
           <ul className="catalog-list p-0">
             {phones.map((phone) => (
               <li key={phone.id}>
