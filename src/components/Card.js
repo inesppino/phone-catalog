@@ -1,14 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import images from './Images';
 
 const Card = ({ phone, onDelete }) => {
+  const getImage = () => {
+    let src = '';
+    if (!images[phone.imageFileName]) {
+      src = 'https://via.placeholder.com/100x185.png?text=Not+Found';
+    } else {
+      src = images[phone.imageFileName];
+    }
+    return src;
+  }
   return (
     <div className="card shadow-sm">
-      <div className="card-body">
-        img
+      <div className="card-body d-flex">
+        <img className="card-body__image" src={getImage()} alt={phone.name}/>
+        <div className="pl-3">
         <h3>{phone.name}</h3>
         <h5>{phone.manufacturer}</h5>
         <small className="text-muted">{phone.color}</small>
+        </div>
       </div>
       <div className="card-body pt-0 d-flex flex-column justify-content-between">
         <p className="card-text--truncate"><b>Description: </b>{phone.description}</p>

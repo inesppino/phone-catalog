@@ -2,7 +2,6 @@
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, 350px);
-    grid-template-rows: 305px;
     grid-gap: 30px;
     justify-content: center;
 }
@@ -18,4 +17,8 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
+}
+
+.card-body__image {
+    height: 185px;
 }
