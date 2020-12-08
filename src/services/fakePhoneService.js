@@ -14,23 +14,7 @@ export async function deletePhone(id) {
   return await axios.delete(url + '/' + id);
 }
 
-// export function savePhone(phone) {
-//     let phoneInDb = phones.find(m => m._id === phone.id) || {};
-//     phoneInDb.name = phone.name;
-//     phoneInDb.manufacturer = phone.manufacturer;
-//     phoneInDb.description = phone.description;
-//     phoneInDb.color = phone.color;
-//     phoneInDb.price = phone.price;
-//     phoneInDb.imageFileName = phone.imageFileName;
-//     phoneInDb.screen = phone.screen;
-//     phoneInDb.processor = phone.processor;
-//     phoneInDb.ram = phone.ram;
-  
-//     if (!phoneInDb.id) {
-//       phoneInDb.id = Date.now();
-//       phones.push(phoneInDb);
-//     }
-  
-//     return phoneInDb;
-// }
+export async function savePhone(id, phone) {
+    return await axios.put(url + '/' + id, phone)
+}
   
