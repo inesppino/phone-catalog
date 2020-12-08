@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="app__container">
       <Switch>
-        <Route path="/catalog/edit/:id" component={PhoneForm} />
+        <Route path="/catalog/edit/:id" render={(props) => <PhoneForm {...props}/>} />
         <Route path="/catalog/:id" component={DetailCard} />
         <Route path="/catalog" render={(props) => <Catalog {...props} />} />
         <Route path="/not-found" component={NotFound} />

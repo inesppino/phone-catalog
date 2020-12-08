@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getPhone } from "../services/fakePhoneService";
+import { getPhone, deletePhone } from "../services/fakePhoneService";
 import '../assets/css/catalog.css';
+import { Link } from "react-router-dom";
+import GoBackButton from "./GoBackButton";
 
 const DetailCard = (props) => {
   const [details, setDetails] = useState({});
@@ -17,6 +19,7 @@ const DetailCard = (props) => {
   };
 
   const {
+    id,
     name,
     manufacturer,
     color,
@@ -27,6 +30,16 @@ const DetailCard = (props) => {
     ram,
   } = details;
 
+  const handleDelete = async (phone) => {
+    try {
+      await deletePhone(phone.id);
+      props.history.push("/catalog");
+    } catch (ex) {
+      if(ex.response && ex.response.status === 404)
+      alert.error('This phone has already been deleted');
+    }
+  }
+
   useEffect(() => {
     async function populateComponent() {
       await getDetails();
@@ -36,6 +49,7 @@ const DetailCard = (props) => {
 
   return (
     <div className="container pt-4">
+      <GoBackButton {...props} />
       <div className="d-flex flex-column mt-4 align-items-center">
         <div className="card shadow-sm">
           <div className="card-body">
@@ -67,9 +81,9 @@ const DetailCard = (props) => {
         </div>
         <div className="btn-group mt-4">
           <button type="button" className="btn btn-sm btn-outline-secondary">
-            Edit
+            <Link to={`/catalog/edit/${id}`}>Edit</Link>
           </button>
-          <button type="button" className="btn btn-sm btn-danger">
+          <button onClick={() => handleDelete(details)} type="button" className="btn btn-sm btn-danger">
             Delete
           </button>
         </div>

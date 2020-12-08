@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Joi from "joi-browser";
 import { getPhone, savePhone } from "../services/fakePhoneService";
 import Input from "./input";
+import GoBackButton from "./GoBackButton";
 
 const PhoneForm = (props) => {
   const [phone, setPhone] = useState({
@@ -116,10 +117,11 @@ const PhoneForm = (props) => {
 
   return (
     <div className="container">
-      <h1 className="h1">Edit</h1>
+      <GoBackButton {...props}/>
+      <h1 className="h1 mt-4">Edit</h1>
       <form onSubmit={submitForm}>
         {populateComponent()}
-        <button disabled={validate()} className="btn btn-primary">
+        <button disabled={validate()} className="btn btn-primary mt-4">
           Save
         </button>
       </form>
