@@ -16,8 +16,7 @@ function Catalog() {
       const response = await getPhones();
       setPhones(response.data);
     } catch (ex) {
-      console.log(ex);
-      setMessage('Ha ocurrido un error');
+      setMessage('An error has occurred');
     }
     setIsLoading(false);
   };
@@ -27,11 +26,10 @@ function Catalog() {
     const newPhones = originalPhones.filter(p => p.id !== phone.id);
     setPhones(newPhones);
     try {
-      const result = await deletePhone(phone.id);
-      console.log(result);
+      await deletePhone(phone.id);
     } catch (ex) {
       if(ex.response && ex.response.status === 404)
-      alert.error('This movie has already been deleted');
+      alert.error('This phone has already been deleted');
       setPhones(originalPhones);
     }
   }
@@ -49,7 +47,7 @@ function Catalog() {
         <div className="container d-flex flex-column">
           <h1 className="h1 p-4 text-center">Phone Catalog</h1>
           {message && <p>{message}</p>}
-          <p>Showing {phones.length} movies in the database.</p>
+          <p>Showing {phones.length} phones in the database.</p>
           <ul className="catalog-list p-0">
             {phones.map((phone) => (
               <li key={phone.id}>

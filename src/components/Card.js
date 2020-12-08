@@ -10,7 +10,7 @@ const Card = ({ phone, onDelete }) => {
         <h5>{phone.manufacturer}</h5>
         <small className="text-muted">{phone.color}</small>
       </div>
-      <div className="card-body pt-0">
+      <div className="card-body pt-0 d-flex flex-column justify-content-between">
         <p className="card-text--truncate"><b>Description: </b>{phone.description}</p>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
