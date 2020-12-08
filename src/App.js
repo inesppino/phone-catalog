@@ -4,7 +4,7 @@ import Catalog from "./components/Catalog";
 import DetailCard from "./components/DetailCard";
 import NotFound from "./components/NotFound";
 import PhoneForm from "./components/PhoneForm";
-import './assets/css/app.css'
+import './assets/css/app.scss'
 
 function App() {
   return (

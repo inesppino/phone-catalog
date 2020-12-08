@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getPhones, deletePhone } from "../services/fakePhoneService";
 import LoadingMask from "react-loadingmask";
 import Card from "./Card";
-import "../assets/css/catalog.css";
+import "../assets/css/catalog.scss";
 import "react-loadingmask/dist/react-loadingmask.css";
+import { Link } from "react-router-dom";
 
 function Catalog() {
   const [phones, setPhones] = useState([]);
@@ -43,11 +44,19 @@ function Catalog() {
 
   return (
     <main>
-      <LoadingMask loading={isLoading} text={"loading..."} className="h-100 w-100">
-        <div className="container d-flex flex-column">
+      <LoadingMask loading={isLoading} text={"loading..."} className="loading__container">
+        <div className="container d-flex flex-column aling-items-center">
           <h1 className="h1 mb-4 text-center">Phone Catalog</h1>
+          <div className="d-flex justify-content-around mt-2">
+          <p>Showing {phones.length} phones in the database.</p>
+          <Link
+              to="/catalog/edit/new"
+              className="btn btn-primary"
+              style={{ marginBottom: 20 }} >
+              New Phone
+            </Link>
+          </div>
           {message && <p>{message}</p>}
-          <p className="m-5">Showing {phones.length} phones in the database.</p>
           <ul className="catalog-list p-0">
             {phones.map((phone) => (
               <li key={phone.id}>

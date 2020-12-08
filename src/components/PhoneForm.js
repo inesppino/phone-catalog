@@ -19,6 +19,8 @@ const PhoneForm = (props) => {
 
   const getPhoneDetails = async () => {
     const idPhone = props.match.params.id;
+    if (idPhone === "new") return;
+
     try {
       const response = await getPhone(idPhone);
       setPhone(response.data);
@@ -108,7 +110,7 @@ const PhoneForm = (props) => {
 
   const doSubmit = async () => {
     try {
-      await savePhone(phone.id, phone);
+      await savePhone(phone);
       props.history.push("/catalog");
     } catch (ex) {
       alert.error('An error has ocurred', ex.response.status)
@@ -116,7 +118,7 @@ const PhoneForm = (props) => {
   };
 
   return (
-    <div className="container">
+    <div className="container detail-card__container">
       <GoBackButton {...props}/>
       <h1 className="h1 mt-4">Edit</h1>
       <form onSubmit={submitForm}>

@@ -14,7 +14,11 @@ export async function deletePhone(id) {
   return await axios.delete(url + '/' + id);
 }
 
-export async function savePhone(id, phone) {
-    return await axios.put(url + '/' + id, phone)
+export async function savePhone(phone) {
+  if(phone.id) {
+    return await axios.put(url + '/' + phone.id, phone)
+  }
+
+  return await axios.post(url, phone);
 }
   
